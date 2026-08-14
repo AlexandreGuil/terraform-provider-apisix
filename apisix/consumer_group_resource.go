@@ -4,14 +4,12 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/holubovskyi/apisix-client-go"
-
 	"terraform-provider-apisix/apisix/model"
 
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
+	"github.com/holubovskyi/apisix-client-go"
 )
 
 // Ensure the implementation satisfies the expected interfaces.
@@ -86,9 +84,7 @@ func (r *consumerGroupResource) Create(ctx context.Context, req resource.CreateR
 
 	// Map response body to schema and populate Computed attribute values
 	newState := model.ConsumerGroupFromApiToTerraform(ctx, newConsumerGroupResponse)
-	if !newState.Plugins.IsNull() {
-		newState.Plugins = types.StringValue(plan.Plugins.ValueString())
-	}
+	newState.Plugins = model.PreferPluginsValue(newState.Plugins, plan.Plugins)
 
 	// Set state to fully populated data
 	diags = resp.State.Set(ctx, &newState)
@@ -121,9 +117,7 @@ func (r *consumerGroupResource) Read(ctx context.Context, req resource.ReadReque
 
 	// Overwrite with refreshed state
 	newState := model.ConsumerGroupFromApiToTerraform(ctx, consumerGroupStateResponse)
-	if !newState.Plugins.IsNull() {
-		newState.Plugins = types.StringValue(state.Plugins.ValueString())
-	}
+	newState.Plugins = model.PreferPluginsValue(newState.Plugins, state.Plugins)
 
 	// Set refreshed state
 	diags = resp.State.Set(ctx, &newState)
@@ -168,9 +162,7 @@ func (r *consumerGroupResource) Update(ctx context.Context, req resource.UpdateR
 	}
 
 	newState := model.ConsumerGroupFromApiToTerraform(ctx, updatedConsumerGroup)
-	if !newState.Plugins.IsNull() {
-		newState.Plugins = types.StringValue(plan.Plugins.ValueString())
-	}
+	newState.Plugins = model.PreferPluginsValue(newState.Plugins, plan.Plugins)
 
 	// Set state to fully populated data
 	diags = resp.State.Set(ctx, &newState)

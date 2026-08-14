@@ -12,7 +12,7 @@ Terraform [provider development documentation](https://www.terraform.io/docs/ext
 There is a [makefile](../GNUmakefile) to help build the provider. You can build the provider by running `make build`.
 
 ```shell
-$ make build
+make build
 ```
 
 ### Tests
@@ -20,14 +20,14 @@ In order to run the full suite of Acceptance tests, run `make testacc`.
 
 
 ```shell
-$ make testacc
+make testacc
 ```
 
 ## Install provider locally
 You can install provider locally for development and testing.
 Use the `make install` command to compile the provider into a binary and install it in your `GOBIN` path.
 ```shell
-$ make install
+make install
 ```
 
 Terraform allows you to use local provider builds by setting a `dev_overrides` block in a configuration file called `.terraformrc`. This block overrides all other configured installation methods.
@@ -91,7 +91,7 @@ docker-compose up
 ```
 Leave this process running in your terminal window. In the original terminal window, verify that APISIX is running by sending a request.
 ```bash
-$ curl "http://127.0.0.1:9180/apisix/admin/services/" \
+curl "http://127.0.0.1:9180/apisix/admin/services/" \
 -H 'X-API-KEY: edd1c9f034335f136f87ad84b625c8f1'
 ```
 The response indicates that apisix is running successfully:

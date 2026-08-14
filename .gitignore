@@ -1,11 +1,12 @@
 /vendor
 /dist
 
+.gocache
+
 /terraform-provider-apisix
 /.terraform
 
 *.tfstate*
-
 *.log
 
 /.idea

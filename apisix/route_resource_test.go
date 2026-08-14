@@ -58,8 +58,6 @@ resource "apisix_route" "test" {
 				ResourceName:      "apisix_route.test",
 				ImportState:       true,
 				ImportStateVerify: true,
-				// Ignore plugins value during import
-				ImportStateVerifyIgnore: []string{"plugins"},
 			},
 			// Update and Read testing
 			{

@@ -35,8 +35,6 @@ resource "apisix_secret" "test" {
 				ImportState:       true,
 				ImportStateId:     "gcp/123",
 				ImportStateVerify: true,
-				// Ignore plugins value during import
-				ImportStateVerifyIgnore: []string{"plugins"},
 			},
 			// Update and Read testing
 			{
