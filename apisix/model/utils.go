@@ -35,6 +35,16 @@ func PluginsStringToJson(ctx context.Context, pluginsString types.String) *map[s
 	return &pluginsMap
 }
 
+func PreferPluginsValue(apiValue types.String, fallbackValue types.String) types.String {
+	if !apiValue.IsNull() && !apiValue.IsUnknown() {
+		return apiValue
+	}
+	if !fallbackValue.IsNull() && !fallbackValue.IsUnknown() {
+		return fallbackValue
+	}
+	return types.StringNull()
+}
+
 func PluginsFromJsonToString(ctx context.Context, metadataMap *map[string]interface{}) types.String {
 	if metadataMap == nil || len(*metadataMap) == 0 {
 		return types.StringNull()
