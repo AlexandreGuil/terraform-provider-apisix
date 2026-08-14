@@ -41,8 +41,6 @@ resource "apisix_consumer_group" "test" {
 				ResourceName:      "apisix_consumer_group.test",
 				ImportState:       true,
 				ImportStateVerify: true,
-				// Ignore plugins value during import
-				ImportStateVerifyIgnore: []string{"plugins"},
 			},
 			// Update and Read testing
 			{

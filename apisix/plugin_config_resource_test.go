@@ -41,8 +41,6 @@ resource "apisix_plugin_config" "test" {
 				ResourceName:      "apisix_plugin_config.test",
 				ImportState:       true,
 				ImportStateVerify: true,
-				// Ignore plugins value during import
-				ImportStateVerifyIgnore: []string{"plugins"},
 			},
 			// Update and Read testing
 			{

@@ -37,8 +37,6 @@ resource "apisix_global_rule" "test" {
 				ResourceName:      "apisix_global_rule.test",
 				ImportState:       true,
 				ImportStateVerify: true,
-				// Ignore plugins value during import
-				ImportStateVerifyIgnore: []string{"plugins"},
 			},
 			// Update and Read testing
 			{
